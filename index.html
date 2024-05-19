@@ -3,7 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- LINK DE ICONES -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- LINK PARA UTILZIAR TODO ESTILO DO TAILWIND -->
     <link rel="stylesheet" href="./styles/output.css">
+
     <title>Dev Burger - A mlehor hamburgueria dev!</title>
 </head>
 <body>    
@@ -26,6 +31,75 @@
     </header>
     <!-- FIM HEADER -->
 
-    <h2 class="text-2xl font-bold text-center mt-9 mb-6">Conheça nosso menu</h2>
+    <h2 class="text-2xl md:text-3xl font-bold text-center mt-9 mb-6">
+        Conheça nosso menu
+    </h2>
+
+    <!-- INÍCIO MENU -->
+    <div id="menu">
+
+        <main calss="grid grid-cols-1">
+            <!-- PRODUTO ITEM 1 -->
+            <div class="flex gap-2">
+                <!-- IMAGEM DO PRODUTO -->
+                <img 
+                    src="./assets/hamb-1.png" 
+                    alt="hamburguer Smash"
+                    class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300"
+                >
+                <!-- FIM IMAGEM DO PRODUTO -->
+                <!-- DESCRIÇÃO, PREÇO E BOTÕES DO PRODUTO -->
+                <div>
+                    <p class="font-bold">Hamburguer Smash</p>
+                    <p class="text-sm">Pão levinho de fermentação natural da Trigou, burger 160g, queijo prato e maionese da casa.</p>
+                    <div class="flex items-center gap-2 justify-between mt-3">
+                        <p class="font-bold text-lg">R$18,90</p>
+                        <button 
+                            class="bg-gray-900 px-5 rounded add-to-cart-btn"
+                            data-name="Hamburguer Smash"
+                            data-price="18.90"
+                        >
+                            <i class="fa fa-cart-plus text-lg text-white"></i>
+                        </button>
+                    </div>
+                </div>
+                <!-- FIM DESCRIÇÃO, PREÇO E BOTÕES DO PRODUTO -->
+            </div>
+            <!-- FIM PRODUTO ITEM -->
+
+            <!-- ---------------------------------------------------------------------------- -->
+            <!-- PRODUTO ITEM 2 -->
+            <div class="flex gap-2">
+                <!-- IMAGEM DO PRODUTO -->
+                <img 
+                    src="./assets/hamb-2.png" 
+                    alt="hamburguer Duplo"
+                    class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300"
+                >
+                <!-- FIM IMAGEM DO PRODUTO -->
+                <!-- DESCRIÇÃO, PREÇO E BOTÕES DO PRODUTO -->
+                <div>
+                    <p class="font-bold">Hamburguer Duplo</p>
+                    <p class="text-sm">Pão levinho de fermentação natural da Trigou, burger 160g, queijo prato e maionese da casa.</p>
+                    <div class="flex items-center gap-2 justify-between mt-3">
+                        <p class="font-bold text-lg">R$32,90</p>
+                        <button 
+                            class="bg-gray-900 px-5 rounded add-to-cart-btn"
+                            data-name="Hamburguer Duplo"
+                            data-price="32.90"
+                        >
+                            <i class="fa fa-cart-plus text-lg text-white"></i>
+                        </button>
+                    </div>
+                </div>
+                <!-- FIM DESCRIÇÃO, PREÇO E BOTÕES DO PRODUTO -->
+            </div>
+            <!-- FIM PRODUTO ITEM -->
+
+        </main>
+
+    </div>
+    <!-- FIM MENU -->
+
 </body>
 </html>
