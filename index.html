@@ -38,7 +38,7 @@
     <!-- INÍCIO MENU -->
     <div id="menu">
 
-        <main class="grid grid-cols-1 gap-7 mx-auto max-w-7xl">
+        <main class="grid grid-cols-1 md:grid-cols-2 mb:gap-10 gap-7 mx-auto max-w-7xl px-2 mb-16">
             <!-- PRODUTO ITEM 1 -->
             <div class="flex gap-2">
                 <!-- IMAGEM DO PRODUTO -->
@@ -96,10 +96,149 @@
             </div>
             <!-- FIM PRODUTO ITEM -->
 
-        </main>
+           <!-- ---------------------------------------------------------------------------- -->
+            <!-- PRODUTO ITEM 3 -->
+            <div class="flex gap-2">
+                <!-- IMAGEM DO PRODUTO -->
+                <img 
+                    src="./assets/hamb-3.png" 
+                    alt="hamburguer Salad"
+                    class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300"
+                >
+                <!-- FIM IMAGEM DO PRODUTO -->
+                <!-- DESCRIÇÃO, PREÇO E BOTÕES DO PRODUTO -->
+                <div>
+                    <p class="font-bold">Hamburguer Salad</p>
+                    <p class="text-sm">Pão levinho de fermentação natural da Trigou, burger 160g, queijo prato e maionese da casa.</p>
+                    <div class="flex items-center gap-2 justify-between mt-3">
+                        <p class="font-bold text-lg">R$35,90</p>
+                        <button 
+                            class="bg-gray-900 px-5 rounded add-to-cart-btn"
+                            data-name="Hamburguer Salad"
+                            data-price="35.90"
+                        >
+                            <i class="fa fa-cart-plus text-lg text-white"></i>
+                        </button>
+                    </div>
+                </div>
+                <!-- FIM DESCRIÇÃO, PREÇO E BOTÕES DO PRODUTO -->
+            </div>
+            <!-- FIM PRODUTO ITEM -->
 
+           <!-- ---------------------------------------------------------------------------- -->
+            <!-- PRODUTO ITEM 4 -->
+            <div class="flex gap-2">
+                <!-- IMAGEM DO PRODUTO -->
+                <img 
+                    src="./assets/hamb-4.png" 
+                    alt="hamburguer Da Casa"
+                    class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300"
+                >
+                <!-- FIM IMAGEM DO PRODUTO -->
+                <!-- DESCRIÇÃO, PREÇO E BOTÕES DO PRODUTO -->
+                <div>
+                    <p class="font-bold">Hamburguer  Da Casa</p>
+                    <p class="text-sm">Pão levinho de fermentação natural da Trigou, burger 160g, queijo prato e maionese da casa.</p>
+                    <div class="flex items-center gap-2 justify-between mt-3">
+                        <p class="font-bold text-lg">R$42,00</p>
+                        <button 
+                            class="bg-gray-900 px-5 rounded add-to-cart-btn"
+                            data-name="Hamburguer Da Casa"
+                            data-price="42.00"
+                        >
+                            <i class="fa fa-cart-plus text-lg text-white"></i>
+                        </button>
+                    </div>
+                </div>
+                <!-- FIM DESCRIÇÃO, PREÇO E BOTÕES DO PRODUTO -->
+            </div>
+            <!-- FIM PRODUTO ITEM -->
+
+        </main>
+        
+        <!-- ########################################################################################## -->
+        <div class="mx-auto max-w-7xl px-2 my-2">
+            <h2 class="font-bold text-3xl">Bebidas</h2>
+        </div>
+        <!-- GRID BEBIDAS -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-7 md:gap-10 mx-auto max-w-7xl px-2 mb-16" id="menu">
+            <!-- BEBIDAS ITEM 1 -->
+            <div class="flex gap-2 w-full">
+                <!-- IMAGEM DO PRODUTO -->
+                <img 
+                    src="./assets/refri-1.png" 
+                    alt="Coca lata"
+                    class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300"
+                >
+                <!-- FIM IMAGEM DO PRODUTO -->
+                <!-- DESCRIÇÃO, PREÇO E BOTÕES DO PRODUTO -->
+                <div class="w-full">
+                    <p class="font-bold">Coca lata</p>
+                    <div class="flex items-center gap-2 justify-between mt-3">
+                        <p class="font-bold text-lg">R$6,00</p>
+                        <button 
+                            class="bg-gray-900 px-5 rounded add-to-cart-btn"
+                            data-name="Coca lata"
+                            data-price="6.00"
+                        >
+                            <i class="fa fa-cart-plus text-lg text-white"></i>
+                        </button>
+                    </div>
+                </div>
+                <!-- FIM DESCRIÇÃO, PREÇO E BOTÕES DO PRODUTO -->
+            </div>
+            <!-- FIM BEBIDAS ITEM 1 -->
+
+
+            <!-- BEBIDAS ITEM 2 -->
+            <div class="flex gap-2 w-full">
+                <!-- IMAGEM DO PRODUTO -->
+                <img 
+                    src="./assets/refri-2.png" 
+                    alt="Guaraná lata"
+                    class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300"
+                >
+                <!-- FIM IMAGEM DO PRODUTO -->
+                <!-- DESCRIÇÃO, PREÇO E BOTÕES DO PRODUTO -->
+                <div class="w-full">
+                    <p class="font-bold">Guaraná lata</p>
+                    <div class="flex items-center gap-2 justify-between mt-3">
+                        <p class="font-bold text-lg">R$6,00</p>
+                        <button 
+                            class="bg-gray-900 px-5 rounded add-to-cart-btn"
+                            data-name="Guaraná lata"
+                            data-price="6.00"
+                        >
+                            <i class="fa fa-cart-plus text-lg text-white"></i>
+                        </button>
+                    </div>
+                </div>
+                <!-- FIM DESCRIÇÃO, PREÇO E BOTÕES DO PRODUTO -->
+            </div>
+            <!-- FIM BEBIDAS ITEM 2 -->
+        </div>
+        <!-- FIM GRID BEBIDAS -->
     </div>
     <!-- FIM MENU -->
+
+    <!-- MODAL CART -->
+    <div class="bg-black/60 w-full h-full fixed top-0 left-0 z-[99] flex items-center justify-center">
+        <div class="bg-white p-5 rounded-md">
+            <h2>Meu carrinho</h2>
+        </div>
+    </div>
+
+    <!-- FIM MODAL CART -->
+
+    <!-- BUTTON CART FOOTER -->
+    <footer class="w-full bg-red-500 py-2 fixed bottom-0 z-40 flex items-center justify-center">
+        <button class="flex items-center gap-2 text-white font-bold" id="cart-btn">
+            (<span id="cart-button">2</span>)
+            Veja meu carrinho
+            <i class="fa fa-cart-plus text-lg text-white"></i>
+        </button>
+    </footer>
+    <!-- FIM BUTTON CART FOOTER -->
 
 </body>
 </html>
