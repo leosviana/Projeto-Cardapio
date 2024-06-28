@@ -19,4 +19,41 @@ cartModal.addEventListener("click", function(event){
     if(event.target === cartModal){
         cartModal.style.display = "none";
     }
-})
+});
+
+closeModalBtn.addEventListener("click", function(){
+   cartModal.style.display = "none";
+});
+
+/*
+menu.addEventListener("click", function(event){
+    //console.log(event.target);
+    let parentButton = event.currentTarget;//target.closest(".add-to-cart-btn");
+
+    if(parentButton){
+        const name = parentButton.getAttribute("data-name");
+        const price = parentButton.getAttribute("data-price");
+    }
+    if(name && price) {
+        console.log(`Name: ${name}, Price: ${price}`);
+    } else {
+        console.error("Os atributos 'data-name' ou 'data-price' estão ausentes.");
+    }
+});*/
+
+document.querySelectorAll('.add-to-cart-btn').forEach(button => {
+    button.addEventListener("click", function(event){    
+        let parentButton = event.currentTarget;
+
+        if(parentButton){
+            const name = parentButton.getAttribute("data-name");
+            const price = parentButton.getAttribute("data-price");
+
+            if(name && price) {
+                console.log(`Name: ${name}, Price: ${price}`);
+            } else {
+                console.error("Os atributos 'data-name' ou 'data-price' estão ausentes.");
+            }
+        }
+    });
+});
