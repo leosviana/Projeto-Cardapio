@@ -9,8 +9,11 @@ const cartCounter = document.getElementById("cart-count");
 const addressInput = document.getElementById("address");
 const addressWarn = document.getElementById("address-warn");
 
+let cart = [];
+
 //Abrir o modal do carrinho
 cartBtn.addEventListener("click", function(){
+    updateCartModal; //Atualiza os itens do carrinho
     cartModal.style.display = "flex"
 });
 
@@ -25,35 +28,64 @@ closeModalBtn.addEventListener("click", function(){
    cartModal.style.display = "none";
 });
 
-/*
-menu.addEventListener("click", function(event){
-    //console.log(event.target);
-    let parentButton = event.currentTarget;//target.closest(".add-to-cart-btn");
-
-    if(parentButton){
-        const name = parentButton.getAttribute("data-name");
-        const price = parentButton.getAttribute("data-price");
-    }
-    if(name && price) {
-        console.log(`Name: ${name}, Price: ${price}`);
-    } else {
-        console.error("Os atributos 'data-name' ou 'data-price' estão ausentes.");
-    }
-});*/
-
+//Selecionando o botão adicionar:
 document.querySelectorAll('.add-to-cart-btn').forEach(button => {
     button.addEventListener("click", function(event){    
         let parentButton = event.currentTarget;
 
         if(parentButton){
             const name = parentButton.getAttribute("data-name");
-            const price = parentButton.getAttribute("data-price");
+            const price = parseFloat(parentButton.getAttribute("data-price"));
 
-            if(name && price) {
-                console.log(`Name: ${name}, Price: ${price}`);
-            } else {
-                console.error("Os atributos 'data-name' ou 'data-price' estão ausentes.");
-            }
+            //Adicionando ao carrinho
+            addToCart(name, price);
         }
     });
 });
+
+//Adicionando itens ao carrinho:
+function addToCart(name, price){    
+    const existingItem = cart.find(item => item.name === name); //Verifica se existe itens iguais selecionados    
+
+    if (existingItem){
+        //Se o item já existe, aumenta apenas a quantidade +1
+        existingItem.quantity += 1;
+        console.log(cart);
+    }else{ //Se não apenas adiciona o item
+        cart.push({
+            name,
+            price,
+            quantity: 1,
+        });
+    } 
+    updateCartModal();
+}
+
+//AtualizaCarrinho
+function updateCartModal(){
+    cartItemsContainer.innerHTML = "";
+    let total = 0;
+
+    cart.forEach(item => {
+        const cartItemElement = document.createElement("div"); //Criando um elemento div no HTML
+        cartItemElement.classList.add("flex", "justify-between", "mb-4", "flex-col");
+
+        //Criando estrutura de um item ao elemento HTML do carrinho
+        cartItemElement.innerHTML = ` 
+            <div>
+                <div>
+                    <p class="font-medium">${item.name}</p>
+                    <p>Qtd: ${item.quantity}</p>
+                    <p calss="font-medium mt-2">R$ ${item.price}</p>                    
+                </div>
+                <div>
+                    <button>
+                        Remover
+                    </button>
+                </div>
+
+            </div>
+        `
+        cartItemsContainer.appendChild(cartItemElement); //Adicionando elemento item ao modal carrinho
+    })
+}
