@@ -9,7 +9,7 @@ const cartCounter = document.getElementById("cart-count");
 const addressInput = document.getElementById("address");
 const addressWarn = document.getElementById("address-warn");
 
-let cart = [];
+let cart = []; //Iniciar o carrinho vazio, sem itens
 
 //Abrir o modal do carrinho
 cartBtn.addEventListener("click", function(){
@@ -17,13 +17,14 @@ cartBtn.addEventListener("click", function(){
     cartModal.style.display = "flex"
 });
 
-//Fechar o modal quando clicar fora
+//Fechar o modal  do carrinho quando clicar fora
 cartModal.addEventListener("click", function(event){
     if(event.target === cartModal){
         cartModal.style.display = "none";
     }
 });
 
+//Fechar o modal do carrinho ao clicar no botão fechar
 closeModalBtn.addEventListener("click", function(){
    cartModal.style.display = "none";
 });
@@ -58,34 +59,58 @@ function addToCart(name, price){
             quantity: 1,
         });
     } 
-    updateCartModal();
+    updateCartModal(); //Atualiza o carrinho
 }
 
-//AtualizaCarrinho
+//Atualiza Carrinho
 function updateCartModal(){
-    cartItemsContainer.innerHTML = "";
-    let total = 0;
+    cartItemsContainer.innerHTML = ""; //Iniciar com carrinho vazio
+    let total = 0; //Iniciar total zerado
 
     cart.forEach(item => {
         const cartItemElement = document.createElement("div"); //Criando um elemento div no HTML
-        cartItemElement.classList.add("flex", "justify-between", "mb-4", "flex-col");
+        cartItemElement.classList.add("flex", "justify-between", "mb-4", "flex-col"); //Estilizando div
 
         //Criando estrutura de um item ao elemento HTML do carrinho
         cartItemElement.innerHTML = ` 
-            <div>
+            <div class="flex items-center justify-between">
                 <div>
                     <p class="font-medium">${item.name}</p>
                     <p>Qtd: ${item.quantity}</p>
-                    <p calss="font-medium mt-2">R$ ${item.price}</p>                    
+                    <p class="font-medium mt-2">R$ ${item.price.toFixed(2)}</p>                    
                 </div>
-                <div>
-                    <button>
-                        Remover
-                    </button>
-                </div>
-
+                <button class="remove-from-cart-btn" data-name="${item.name}">
+                    Remover
+                </button>
             </div>
         `
+        total += item.price * item.quantity; //Multiplicar a quantidade de cada item pelo seu valor
         cartItemsContainer.appendChild(cartItemElement); //Adicionando elemento item ao modal carrinho
     })
+
+    cartTotal.textContent = total.toLocaleString("pt-BR", { //Transformando numero para string. Moeda em Real
+        style: "currency", //Currency = Moeda
+        currency: "BRL"    //Real R$
+    });
+
+    cartCounter.innerHTML = cart.length; //Exibir a quantidade de itens no carrinho
+}
+
+//Função para remover item do carrinho
+cartItemsContainer.addEventListener("click", function(event){
+    //EventoDeClique.Selecionado.DoTipoClasse.Contem(BotaoRemover)
+    if(event.target.classList.contains("remove-from-cart-btn")){ //Verifica se dentro do carrinho contem o botão remover
+        const name = event.target.getAttribute("data-name"); //Pega o atributo nome que foi selecionado
+
+        removeItemCart(name);
+    }
+})
+
+function removeitemCart(name){
+    const index = cart.findIndex(item => item.name === name); //findIndex = Procurar o indice de uma variavel em uma lista
+    //Se for diferente de item não encontrado
+    if(index !== -1){ //-1 significa que não foi encontrado o item
+        const item = cart[index]; //Trazer apenas o indice do item
+        console.log(item);
+    }
 }
