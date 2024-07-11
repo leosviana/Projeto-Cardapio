@@ -106,11 +106,36 @@ cartItemsContainer.addEventListener("click", function(event){
     }
 })
 
-function removeitemCart(name){
+function removeItemCart(name){
     const index = cart.findIndex(item => item.name === name); //findIndex = Procurar o indice de uma variavel em uma lista
     //Se for diferente de item não encontrado
     if(index !== -1){ //-1 significa que não foi encontrado o item
         const item = cart[index]; //Trazer apenas o indice do item
-        console.log(item);
+        if (item.quantity > 1){ //Se o item possui quantidade maior do que 1
+            item.quantity -= 1; //Retira apenas uma quantidade
+            updateCartModal(); //Atualiza o carrinho
+            return; //Parar execução aqui
+        }
+        //Se não a quantidade for apenas 1:
+        cart.splice(index, 1); //Remove o item da lista splice(posição_do_item, quantidade_para_remover)
+        updateCartModal(); //Atualiza o carrinho
     }
 }
+
+addressInput.addEventListener("input", function(event){
+    let inputValue = event.target.value;
+
+    if(inputValue !== ""){
+        addressInput.classList.remove("border-red-500"); //Remove a borda vermelha do campo de endereço
+        addressWarn.classList.add("hidden"); //Esconde o campo com a descrição de alerta
+    }
+});
+
+checkoutBtn.addEventListener("click", function(){ //Ao clicar no botão "Finalizar pedido"
+    if(cart.length === 0) return; //Se clicar em finalizar pedido sem ter item no carrinho, não faz nada
+    if(addressInput.value === ""){ //Se o campo de endereço for vazio
+        addressWarn.classList.remove("hidden"); //Mostrar campo de alerta
+        addressInput.classList.add("border-red-500"); //Exibir borda vermelha no campo
+        return;
+    }
+});
