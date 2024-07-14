@@ -96,16 +96,16 @@ function updateCartModal(){
     cartCounter.innerHTML = cart.length; //Exibir a quantidade de itens no carrinho
 }
 
-//Função para remover item do carrinho
+//Validando item do carrinho
 cartItemsContainer.addEventListener("click", function(event){
     //EventoDeClique.Selecionado.DoTipoClasse.Contem(BotaoRemover)
     if(event.target.classList.contains("remove-from-cart-btn")){ //Verifica se dentro do carrinho contem o botão remover
         const name = event.target.getAttribute("data-name"); //Pega o atributo nome que foi selecionado
-
-        removeItemCart(name);
+        removeItemCart(name); //Chamando a função para remover item do carrinho
     }
 })
 
+//Função para removendo item do carrinho
 function removeItemCart(name){
     const index = cart.findIndex(item => item.name === name); //findIndex = Procurar o indice de uma variavel em uma lista
     //Se for diferente de item não encontrado
@@ -122,10 +122,11 @@ function removeItemCart(name){
     }
 }
 
+//Campo de endereço
 addressInput.addEventListener("input", function(event){
     let inputValue = event.target.value;
 
-    if(inputValue !== ""){
+    if(inputValue !== ""){ //Se o endereço estiver vazio
         addressInput.classList.remove("border-red-500"); //Remove a borda vermelha do campo de endereço
         addressWarn.classList.add("hidden"); //Esconde o campo com a descrição de alerta
     }
@@ -134,13 +135,15 @@ addressInput.addEventListener("input", function(event){
 //Finalizar pedido
 checkoutBtn.addEventListener("click", function(){ //Ao clicar no botão "Finalizar pedido"
 
-    //Exibe se o restaurante está fechado ou aberto
+    //Exibe se o restaurante está fechado ou aberto (SIMPLES)
     /*const isOpen = checkRestaurantOpen();
     if (!isOpen){ //Se não tiver fechado
         alert("Restaurante fechado no momento!");
         return;
     }*/
 
+    /* 
+    //Exibe se o restaurante está fechado ou aberto (MELHORADO)
     const isOpen = checkRestaurantOpen();
     if (!isOpen){
         Toastify({
@@ -155,7 +158,7 @@ checkoutBtn.addEventListener("click", function(){ //Ao clicar no botão "Finaliz
             },
         }).showToast();
        return;
-    }        
+    } */     
 
     if(cart.length === 0) return; //Se clicar em finalizar pedido sem ter item no carrinho, não faz nada
     if(addressInput.value === ""){ //Se o campo de endereço for vazio
@@ -164,9 +167,10 @@ checkoutBtn.addEventListener("click", function(){ //Ao clicar no botão "Finaliz
         return;
     }
 
+    //Montando a estrutura da mensagem:
     const cartItems = cart.map((item) => {
         return (
-            `${item.name} - Quantidade: (${item.quantity}) - Preço R$: (${item.price}) |`
+            `${item.name} - Quantidade: (${item.quantity}) - Preço R$: (${item.price}) | `
         )
     }).join("");
 
@@ -188,13 +192,13 @@ function checkRestaurantOpen(){
     //Restaurante está aberto
 }
 
-const spanItem = document.getElementById("date-span");
-const isOpen = checkRestaurantOpen();
+const spanItem = document.getElementById("date-span"); //Captura a data/hora atual
+const isOpen = checkRestaurantOpen(); //Captura se o restaurante está aberto ou fechado (true/false)
 
-if (isOpen){
-    spanItem.classList.remove("bg-red-500");
-    spanItem.classList.add("bg-green-500");
-}else{
-    spanItem.classList.remove("bg-green-500");
-    spanItem.classList.add("bg-red-500");
+if (isOpen){ //Se estiver aberto (true):
+    spanItem.classList.remove("bg-red-500"); //Mostra background do horario em vermelho
+    spanItem.classList.add("bg-green-500");  //Mostra background do horario em verde
+}else{ //Se estiver fechado (false):
+    spanItem.classList.remove("bg-green-500"); //Mostra background do horario em vermelho
+    spanItem.classList.add("bg-red-500");      //Mostra background do horario em verde
 }
