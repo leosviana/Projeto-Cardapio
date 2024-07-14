@@ -131,11 +131,70 @@ addressInput.addEventListener("input", function(event){
     }
 });
 
+//Finalizar pedido
 checkoutBtn.addEventListener("click", function(){ //Ao clicar no botão "Finalizar pedido"
+
+    //Exibe se o restaurante está fechado ou aberto
+    /*const isOpen = checkRestaurantOpen();
+    if (!isOpen){ //Se não tiver fechado
+        alert("Restaurante fechado no momento!");
+        return;
+    }*/
+
+    const isOpen = checkRestaurantOpen();
+    if (!isOpen){
+        Toastify({
+            text: "Ops! O restaurante está fechado.",
+            duration: 3000,
+            close: true,
+            gravity: "top", // `top` or `bottom`
+            position: "right", // `left`, `center` or `right`
+            stopOnFocus: true, // Prevents dismissing of toast on hover
+            style: {
+            background: "#ef4444",
+            },
+        }).showToast();
+       return;
+    }        
+
     if(cart.length === 0) return; //Se clicar em finalizar pedido sem ter item no carrinho, não faz nada
     if(addressInput.value === ""){ //Se o campo de endereço for vazio
         addressWarn.classList.remove("hidden"); //Mostrar campo de alerta
         addressInput.classList.add("border-red-500"); //Exibir borda vermelha no campo
         return;
     }
+
+    const cartItems = cart.map((item) => {
+        return (
+            `${item.name} - Quantidade: (${item.quantity}) - Preço R$: (${item.price}) |`
+        )
+    }).join("");
+
+    const message = encodeURIComponent(cartItems); //Transformando a mensagem em URL
+    const phone = "96988949764"; //Telefone da lanchonete (aleatorio)
+    //Enviando o pedido para API do whatsapp gratuita com o pedido e endereço do cliente:
+    window.open(`https://wa.me/${phone}?text=${message} Endereço: ${addressInput.value}`, "_blank");
+
+    cart=[]; //Limpando o carrinho
+    updateCartModal(); //Atualizando o carrinho
+
 });
+
+//Verificar a hora e manipular o card horario
+function checkRestaurantOpen(){
+    const data = new Date();
+    const hora = data.getHours();
+    return hora >= 18 && hora < 22;
+    //Restaurante está aberto
+}
+
+const spanItem = document.getElementById("date-span");
+const isOpen = checkRestaurantOpen();
+
+if (isOpen){
+    spanItem.classList.remove("bg-red-500");
+    spanItem.classList.add("bg-green-500");
+}else{
+    spanItem.classList.remove("bg-green-500");
+    spanItem.classList.add("bg-red-500");
+}
