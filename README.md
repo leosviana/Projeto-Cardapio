@@ -7,7 +7,7 @@ CABEÇALHO:
 ![image](https://github.com/leosviana/Projeto-Cardapio/tree/main/assets/head.png)
 
 CORPO DA PÁGINA:
-![image](https://github.com/leosviana/Projeto-Cardapio/tree/main/assets/body.png)
+![image](https://github.com/leosviana/Projeto-Cardapio/tree/main/body.png)
 
 AULA 1 - Criando projeto profissional do zero - HTML, CSS, TailwindCSS, JavaScript:<br>
 https://www.youtube.com/watch?v=rjXXDv23-6Y&t=7s<br>
