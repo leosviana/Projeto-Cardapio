@@ -175,7 +175,7 @@ checkoutBtn.addEventListener("click", function(){ //Ao clicar no botão "Finaliz
     }).join("");
 
     const message = encodeURIComponent(cartItems); //Transformando a mensagem em URL
-    const phone = "16988225028"; //Telefone da lanchonete (aleatorio)  96988949764
+    const phone = "96988949764"; //Telefone da lanchonete (aleatorio)  96988949764
     //Enviando o pedido para API do whatsapp gratuita com o pedido e endereço do cliente:
     window.open(`https://wa.me/${phone}?text=${message} Endereço: ${addressInput.value}`, "_blank");
 
